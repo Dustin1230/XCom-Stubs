@@ -14,15 +14,6 @@ struct CombatExchange
     var int iDamage;
     var float fTime;
 
-    structdefaultproperties
-    {
-        iSourceShip=0
-        iWeapon=0
-        iTargetShip=0
-        bHit=false
-        iDamage=0
-        fTime=0.0
-    }
 };
 
 struct Combat
@@ -30,11 +21,6 @@ struct Combat
     var array<CombatExchange> m_aInterceptorExchanges;
     var array<CombatExchange> m_aUFOExchanges;
 
-    structdefaultproperties
-    {
-        m_aInterceptorExchanges=none
-        m_aUFOExchanges=none
-    }
 };
 
 var XGInterception m_kInterception;
@@ -65,10 +51,6 @@ function bool IsShipOutrun(int iShip){}
 function bool IsUFODead(){}
 function bool AnyAllInterceptorsDead(){}
 function bool AnyInterceptorsChasing(){}
-//below to be moved to SUInterceptionEngagement
-//---------------------------------------------
-function string GetSquadronStatusBrief(){}
-//---------------------------------------------
 function float FindNextWeaponTime(){}
 function bool IsUfo(int iShip){}
 function bool IsAnyWeaponInRange(int iShip){}
@@ -89,7 +71,3 @@ function Combat GetCombat(){}
 function UpdateEngagementResult(float fElapsedTime){}
 function SetBoostAdjustedTimeOffset(float fPlaybackTimeElapsed){}
 
-
-DefaultProperties
-{
-}

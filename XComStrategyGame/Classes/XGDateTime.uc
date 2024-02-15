@@ -2,21 +2,13 @@ class XGDateTime extends XGStrategyActor
     config(GameData)
     notplaceable
     hidecategories(Navigation);
-
+//complete stub 
 struct CheckpointRecord
 {
     var float m_fTime;
     var int m_iDay;
     var int m_iMonth;
     var int m_iYear;
-
-    structdefaultproperties
-    {
-        m_fTime=0.0
-        m_iDay=0
-        m_iMonth=0
-        m_iYear=0
-    }
 };
 var float m_fTime;
 var int m_iDay;
@@ -45,7 +37,8 @@ function bool IsFirstDay(){}
 function SetTime(int iHour, int iMinute, int iSecond, int iMonth, int iDay, int iYear){}
 function CopyDateTime(XGDateTime kDate){}
 function GetLocalizedTime(Vector2D v2Loc, out XGDateTime kDate){}
-private final function int GetXMTHourDiff(){}
+final function int GetXMTHourDiff(){}
+function ETimeOfDay GetTimeOfDay(){}
 function string GetTimeString(){}
 function string GetMonthString(optional int iMonth, optional bool bCapitalize){}
 function string GetMonthStringCapitalized(string Month){}

@@ -1,5 +1,6 @@
 class XComLocalizer extends Object
     native(Core);
+//complete stub
 
 // Export UXComLocalizer::execEscapeAndTokenize(FFrame&, void* const)
 private native static final function EscapeAndTokenize(out array<string> OutTokens, string InString);

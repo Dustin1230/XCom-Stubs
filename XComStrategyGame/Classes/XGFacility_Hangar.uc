@@ -1,5 +1,7 @@
 class XGFacility_Hangar extends XGFacility;
 
+//complete stub
+
 	struct TContinentInfo
 {
     var EContinent eCont;
@@ -7,15 +9,6 @@ class XGFacility_Hangar extends XGFacility;
     var int iNumShips;
     var array<XGShip_Interceptor> arrCraft;
     var array<int> m_arrInterceptorOrderIndexes;
-
-    structdefaultproperties
-    {
-        eCont=EContinent.eContinent_NorthAmerica
-        strContinentName=(StrValue="",iState=0)
-        iNumShips=0
-        arrCraft=none
-        m_arrInterceptorOrderIndexes=none
-    }
 };
 
 var XGShip_Dropship m_kSkyranger;

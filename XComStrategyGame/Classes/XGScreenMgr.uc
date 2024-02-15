@@ -1,7 +1,8 @@
 class XGScreenMgr extends XGStrategyActor
 	abstract
+	config(GameData)
 	notplaceable;
-
+//complete stub
 struct TMiniWorld
 {
     var TImage imgWorld;
@@ -10,51 +11,44 @@ struct TMiniWorld
     var array<Color> arrColors;
     var array<TText> arrTickerText;
 };
+var int m_iCurrentView;
+var string m_strVirtualKeyboard;
 var TMiniWorld m_kMap;
 var IScreenMgrInterface m_kInterface;
-var int m_iCurrentView;
+var const localized string m_aResourceTypeNames[EResourceType];
+var const localized string m_strCreditsPrefix;
 
 function bool Narrative(XComNarrativeMoment Moment, optional bool availableInDebug){}
+function bool UnlockItem(XGGameData.EItemType eItem){}
 function bool UnlockFacility(XGGameData.EFacilityType eFacility){}
-function Init(int iView)
-{
-    GoToView(iView);
-    //return;    
-}
-
-function UpdateView()
-{
-    GetUIScreen().GoToView(m_iCurrentView); 
-}
-
-function GoToView(int iView)
-{
-    if(m_iCurrentView == iView)
-    {
-        return;
-    }
-    m_iCurrentView = iView;
-    UpdateView();  
-}
-
-function IScreenMgrInterface GetUIScreen()
-{
-    if(NotEqual_InterfaceInterface(m_kInterface, (none)))
-    {
-        return m_kInterface;
-    }
-    else
-    {
-        return IScreenMgrInterface(Owner);
-    }   
-}
-function PlayBadSound(){}
-function PlayCloseSound(){}
+function bool UnlockFoundryProject(XGGameData.EFoundryTech eProject){}
+function bool UnlockGeneMod(XGGameData.EGeneModTech eGene){}
+function bool UnlockMecArmor(XGGameData.EItemType eArmor){}
+function Init(int iView){}
+function UpdateView(){}
+function GoToView(int iView){}
+function array<string> GetHeaderStrings(array<int> arrCategories){}
+function array<int> GetHeaderStates(array<int> arrCategories){}
 function PlayGoodSound(){}
+function PlayBadSound(){}
 function PlayOpenSound(){}
+function PlayCloseSound(){}
+function PlaySmallOpenSound(){}
+function PlaySmallCloseSound(){}
 function PlayScrollSound(){}
-simulated function OnLoseFocus(){}
+function PlayToggleSelectContinent(){}
+function PlayActivateSoldierPromotion(){}
+function PlayScienceLabScreenOpen(){}
+function PlayHologlobeActivation(){}
+function PlayHologlobeDeactivation(){}
 simulated function OnReceiveFocus(){}
-
-
-static function string ConvertCashToString(int iAmount) {}
+simulated function OnLoseFocus();
+simulated function OnDeactivate(){}
+function IScreenMgrInterface GetUIScreen(){}
+function SetStringFromVirtualKeyboard(string strKeyboard){}
+function CanceledFromVirtualKeyboard();
+static function string ConvertCashToString(int iAmount){}
+function string GetResourceLabel(int iResource){}
+function string GetResourceString(int iResource){}
+function int GetResourceUIState(int iResource){}
+function TLabeledText GetResourceText(int iResource){}

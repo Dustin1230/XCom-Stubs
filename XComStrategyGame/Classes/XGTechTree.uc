@@ -2,6 +2,7 @@ class XGTechTree extends XGStrategyActor
     config(GameData)
     notplaceable
     hidecategories(Navigation);
+//complete stub
 
 var array<TTech> m_arrTechs;
 var array<TFoundryTech> m_arrFoundryTechs;
@@ -39,7 +40,7 @@ function int FoundryDaysToHours(int iDays, int iEngineers){}
 function BalanceFoundry(){}
 function BuildFoundryTech(EFoundryTech eTech, int iDays, int iEngineers, optional int iCash, optional int iElerium, optional int iAlloys, optional ETechType iTechReq, optional EItemType eItemReq, optional int iImage){}
 function BuildFoundryItemCost(int iTech, out TFoundryTech kTech){}
-function TTech GetTech(int iTechType, optional bool bAdjustHours){}
+function TTech GetTech(int iTechType, optional bool bAdjustHours=true){}
 function ETechType GetResultingTech(EItemType eItem){}
 function int GetCreditAdjustedTechHours(int iTech, int iHours, bool bFoundry){}
 function bool CreditAppliesToTech(EResearchCredits eCredit, ETechType eTech){}

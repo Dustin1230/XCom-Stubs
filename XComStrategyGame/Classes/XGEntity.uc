@@ -1,6 +1,7 @@
 class XGEntity extends Actor
     implements(IMouseInteractionInterface)
 dependson(XGStrategyActor);
+//complete stub
 
 struct CheckpointRecord
 {
@@ -8,12 +9,6 @@ struct CheckpointRecord
     var XGStrategyActorNativeBase.EEntityGraphic m_eEntityGraphic;
     var int m_iData;
 
-    structdefaultproperties
-    {
-        m_kGameActor=none
-        m_eEntityGraphic=XGStrategyActorNativeBase.EEntityGraphic.eEntityGraphic_HQ
-        m_iData=0
-    }
 };
 
 var XGStrategyActor m_kGameActor;

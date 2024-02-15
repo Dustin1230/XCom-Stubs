@@ -2,8 +2,8 @@ class UIMissionControl_ProjectCompleteAlert extends UIMissionControl_AlertWithMu
     hidecategories(Navigation);
 
 simulated function UpdateData(){}
-protected simulated function AS_SetTitle(string Title){}
-protected simulated function AS_SetSubTitle(string subtitle){}
-protected simulated function AS_SetText(string Text){}
-protected simulated function AS_SetImage(string imgPath){}
-protected simulated function AS_SetRebates(string Label, string Data){}
+simulated function AS_SetTitle(string Title){}
+simulated function AS_SetSubTitle(string subtitle){}
+simulated function AS_SetText(string Text){}
+simulated function AS_SetImage(string imgPath){}
+simulated function AS_SetRebates(string Label, string Data){}

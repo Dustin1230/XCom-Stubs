@@ -2,6 +2,7 @@ class XGFinanceUI extends XGScreenMgr
     config(GameData)
     notplaceable
     hidecategories(Navigation);
+//complete stub
 
 enum EFinanceView
 {
@@ -13,12 +14,6 @@ struct TFinanceSection
 {
     var TLabeledText ltxtTitle;
     var array<TLabeledText> arrItems;
-
-    structdefaultproperties
-    {
-        ltxtTitle=(StrValue="",strLabel="",iState=0,bNumber=false)
-        arrItems=none
-    }
 };
 var TLabeledText m_ltxtNetIncome;
 var TLabeledText m_ltxtTotalIncome;
@@ -41,6 +36,3 @@ function OnPressButton(){}
 function OnLeaveFacility(){}
 
 
-DefaultProperties
-{
-}

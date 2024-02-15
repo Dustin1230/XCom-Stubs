@@ -14,6 +14,12 @@ struct TCyberneticsLabRepairingMec
     var EItemType m_eMecItem;
     var int m_iHoursLeft;
 };
+struct CheckpointRecord_XGFacility_CyberneticsLab extends CheckpointRecord
+{
+    var array<TCyberneticsLabPatient> m_arrPatients;
+    var array<TCyberneticsLabRepairingMec> m_arrRepairingMecs;
+    var bool m_bSownKeysToMecDeployment;
+};
 
 var const config int m_iModCashCost;
 var const config int m_iModMeldCost;
@@ -25,9 +31,9 @@ var const localized string m_strMultiCompletionDialogText;
 var array<TCyberneticsLabPatient> m_arrPatients;
 var array<TCyberneticsLabRepairingMec> m_arrRepairingMecs;
 var bool m_bSownKeysToMecDeployment;
-var private transient XGStrategySoldier MecCinematicSoldier;
-var private transient PhysicsAsset MecCinematicPhysics;
-var private transient LevelStreaming CinCap;
+var transient XGStrategySoldier MecCinematicSoldier;
+var transient PhysicsAsset MecCinematicPhysics;
+var transient LevelStreaming CinCap;
 
 final function UpdatePatients(){}
 final function UpdateRepairingMecs(){}

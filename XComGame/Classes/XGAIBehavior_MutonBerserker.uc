@@ -1,5 +1,6 @@
 class XGAIBehavior_MutonBerserker extends XGAIBehavior_Muton
 	notplaceable;
+//complete  stub
 
 struct bull_rush_point
 {
@@ -45,9 +46,7 @@ simulated function int ScoreLocation(ai_cover_score kScore, float fDistance)
 {
 }
 
-function SortBullRushPoints()
-{
-}
+function SortBullRushPoints();
 
 function bool GetEngageLocation(out Vector vCover, XGUnit kEnemy, optional bool bOutOfRange, optional out string strFail)
 {
@@ -73,6 +72,5 @@ state IgnoreCoverMove
 {
     simulated event BeginState(name P)
     {
-    }
-    stop;    
+    }  
 }

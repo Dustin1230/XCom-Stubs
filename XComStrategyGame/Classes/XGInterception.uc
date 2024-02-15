@@ -2,6 +2,7 @@ class XGInterception extends XGStrategyActor
     config(GameData)
     notplaceable
     hidecategories(Navigation);
+//complete stub
 
 enum EUFOResult
 {
@@ -17,13 +18,12 @@ struct CheckpointRecord
 {
     var array<XGShip_Interceptor> m_arrInterceptors;
     var XGShip_UFO m_kUFOTarget;
-    var XGInterception.EUFOResult m_eUFOResult;
+    var EUFOResult m_eUFOResult;
 };
 
 var array<XGShip_Interceptor> m_arrInterceptors;
 var XGShip_UFO m_kUFOTarget;
-var XGInterception.EUFOResult m_eUFOResult;
-var int m_iSquadronSpeed;
+var EUFOResult m_eUFOResult;
 var bool m_bSimulatedCombat;
 
 function Init(XGShip_UFO kTarget) {}

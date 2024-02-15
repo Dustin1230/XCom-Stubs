@@ -2,6 +2,7 @@ class XGFundingCouncil extends XGStrategyActor
     hidecategories(Navigation)
     config(GameData)
     notplaceable;
+//complete stub
 
 enum EFCRequestType
 {
@@ -201,14 +202,14 @@ var int m_iFCRequestsThisMonth;
 var int m_iRequestCoolDown[EFCRequest];
 var bool m_bProgenyEnabled;
 var bool m_bSlingshotEnabled;
-var privatewrite bool m_bPlayAnnetteMusing;
-var private bool m_bFuriesWon;
+var bool m_bPlayAnnetteMusing;
+var bool m_bFuriesWon;
 var EFCMission m_eNextProgenyMission;
 var EFCMission m_eNextSlingshotMission;
 var EFCMission m_eLastSlingshotMission;
 var ECountry m_ePendingSatelliteRequestCountry;
 var int m_iNextSlingshotDay;
-var privatewrite int m_iNextAnnetteMusing;
+var int m_iNextAnnetteMusing;
 var int m_iFirstRequestCountdown;
 var int m_iSecondRequestCountdown;
 var array<EFCMission> m_arrPreviousMissions;
@@ -235,7 +236,7 @@ var const localized string m_strRequestSuccess[EFCRequest];
 var const localized string m_strRequestIgnore[EFCRequest];
 var const localized string m_strLabelRequestExpiredExplanation;
 var const localized string m_strSpecialMissionFailed;
-//var XGFundingCouncil_RequestAdaptor m_kSatRequestCompleteAdaptor;
+var XGFundingCouncil_RequestAdaptor m_kSatRequestCompleteAdaptor;
 
 function Update()
 {
@@ -349,9 +350,7 @@ function DetermineMonthlyGrade(out TCouncilMeeting kMeeting)
 {
 }
 
-function OnRequestOffCoolDown(int iRequest)
-{
-}
+function OnRequestOffCoolDown(int iRequest);
 
 function OnRequestExpired(int iRequest)
 {

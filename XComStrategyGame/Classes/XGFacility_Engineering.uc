@@ -2,6 +2,27 @@ class XGFacility_Engineering extends XGFacility
     hidecategories(Navigation)
     config(GameData)
     notplaceable;
+//complete stub
+
+struct CheckpointRecord_XGFacility_Engineering extends CheckpointRecord
+{
+    var array<TConstructionProject> m_arrConstructionProjects;
+    var array<TFacilityProject> m_arrFacilityProjects;
+    var array<TFoundryProject> m_arrFoundryProjects;
+    var array<TItemProject> m_arrItemProjects;
+    var bool m_bCanBuildItems;
+    var bool m_bCanBuildFacilities;
+    var bool m_bNeedsEngineers;
+    var bool m_bGivenEngineers;
+    var int m_iEngineerReminder;
+    var array<int> m_arrMusingTracker;
+    var int m_iEleriumHalfLife;
+    var XGStorage m_kStorage;
+    var int m_iNumEngineers;
+    var array<int> m_arrFoundryHistory;
+    var array<TEngQueueItem> m_arrQueue;
+    var bool m_bUrgeBuildMEC;
+};
 
 var array<TConstructionProject> m_arrConstructionProjects;
 var array<TFacilityProject> m_arrFacilityProjects;

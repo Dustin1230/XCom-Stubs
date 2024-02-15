@@ -1,6 +1,8 @@
 class XComCharacterVoiceBank extends Object
     hidecategories(Object)
-    native(Unit);
+    native(Unit)
+	dependson(XGGameData);
+//complete stub
 
 var() SoundCue HunkerDown;
 var() SoundCue Reload;
@@ -74,3 +76,9 @@ var() SoundCue KineticStrike;
 var() SoundCue OneForAll;
 var() SoundCue ProximityMine;
 var private native Map_Mirror EventToPropertyMap;
+
+// Export UXComCharacterVoiceBank::execGetSoundCue(FFrame&, void* const)
+native final function SoundCue GetSoundCue(ECharacterSpeech Event);
+
+// Export UXComCharacterVoiceBank::execSetSoundCue(FFrame&, void* const)
+native final function SetSoundCue(ECharacterSpeech Event, SoundCue CueIn);

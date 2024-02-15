@@ -1,5 +1,7 @@
 class XGBuildUI extends XGScreenMgr;
 
+//completet  stub
+
 enum EBuildView
 {
     eBuildView_Main,
@@ -24,13 +26,6 @@ struct TFacilityTable
     var TTableMenu mnuOptions;
     var array<TObjectSummary> arrSummaries;
     var array<int> arrFacilities;
-
-    structdefaultproperties
-    {
-        mnuOptions=(arrCategories=none,kHeader=(arrStrings=none,arrStates=none),arrOptions=none,bTakesNoInput=false)
-        arrSummaries=none
-        arrFacilities=none
-    }
 };
 
 struct TUIBaseTile
@@ -40,15 +35,6 @@ struct TUIBaseTile
     var TText txtCounter;
     var TImage imgTile;
     var bool bDisabled;
-
-    structdefaultproperties
-    {
-        kTile=(X=0,Y=0,iType=0,bSecondTile=false,iTileState=0,bExcavation=false,bConstruction=false)
-        txtLabel=(StrValue="",iState=0)
-        txtCounter=(StrValue="",iState=0)
-        imgTile=(iImage=0,strLabel="",iState=0,strPath="")
-        bDisabled=false
-    }
 };
 
 struct TUIFacilityTile
@@ -60,17 +46,6 @@ struct TUIFacilityTile
     var bool bDoubleSize;
     var bool bAdjacencyBonusLeft;
     var bool bAdjacencyBonusTop;
-
-    structdefaultproperties
-    {
-        kTile=(X=0,Y=0,iFacility=0,bRemoval=false)
-        txtLabel=(StrValue="",iState=0)
-        txtCounter=(StrValue="",iState=0)
-        imgTile=(iImage=0,strLabel="",iState=0,strPath="")
-        bDoubleSize=false
-        bAdjacencyBonusLeft=false
-        bAdjacencyBonusTop=false
-    }
 };
 
 struct TBuildCursor
@@ -84,17 +59,6 @@ struct TBuildCursor
     var TText txtCost;
     var TText txtHelp;
 
-    structdefaultproperties
-    {
-        X=0
-        Y=0
-        iSize=0
-        iCursorState=0
-        iUIState=0
-        txtLabel=(StrValue="",iState=0,iButton=0)
-        txtCost=(StrValue="",iState=0)
-        txtHelp=(StrValue="",iState=0)
-    }
 };
 
 struct TBuildHeader
@@ -104,13 +68,6 @@ struct TBuildHeader
     var TLabeledText txtElerium;
     var TLabeledText txtAlloys;
 
-    structdefaultproperties
-    {
-        txtCash=(StrValue="",strLabel="",iState=0,bNumber=false)
-        txtPower=(StrValue="",strLabel="",iState=0,bNumber=false)
-        txtElerium=(StrValue="",strLabel="",iState=0,bNumber=false)
-        txtAlloys=(StrValue="",strLabel="",iState=0,bNumber=false)
-    }
 };
 
 var array<TUIBaseTile> m_arrTiles;
@@ -181,7 +138,6 @@ function UpdateCursor(){}
 function UpdateFacilityTable(){}
 function TTableMenuOption BuildFacilityOption(TFacility kFacility, array<int> arrCategories){}
 function int SortFacilities(TFacility kFacility1, TFacility kFacility2){}
-
 function TObjectSummary BuildSummary(TFacility kFacility){}
 function UpdateTiles(){}
 function RemoveTerrainTileLabelAtIndex(int TileIndex){}
@@ -191,8 +147,8 @@ function bool CanRemoveFacility(int iFacility){}
 function string GetCostString(TProjectCost kCost){}
 function int GetCursorLevel(){}
 simulated function OnReceiveFocus(){}
-private final function ConfirmRemovalDialogue(int X, int Y){}
+function ConfirmRemovalDialogue(int X, int Y){}
 simulated function ConfirmRemovalDialogueCallback(EUIAction eAction){}
-private final function ConfirmCancelConstructionDialogue(){}
+function ConfirmCancelConstructionDialogue(){}
 simulated function ConfirmCancelConstructionDialogueCallback(EUIAction eAction){}
 

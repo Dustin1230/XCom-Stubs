@@ -138,25 +138,25 @@ simulated function Playback(float fDeltaT){}
 simulated function int GetWeaponType(CombatExchange kCombatExchange){}
 simulated function UpdateEnemyEscapeTimer(float fDeltaT){}
 simulated function ShowResultScreen(){}
-final simulated function SetConsumablesState(optional int stateOverride){}
+final simulated function SetConsumablesState(optional int stateOverride=0){}
 simulated function TryAbort(){}
 simulated function bool MayDisengage(){}
 simulated function string GetAbilityDescription(UIInterceptionEngagement.eDisplayEffectType Type){}
 function AS_AttackEvent(int sourceShip, int targetShip, int WeaponType, int weaponID, int Damage, float attackDuration, bool Hit){}
 function AS_MovementEvent(int sourceShip, int moveType, float moveDuration){}
-function AS_DisplayEffectEvent(int effectType, string effectDescription, optional bool Enabled, optional int effectData){}
+function AS_DisplayEffectEvent(int effectType, string effectDescription, optional bool Enabled=true, optional int effectData=-1){}
 function AS_InitializeData(int playerShipType, int enemyShipType, string damageLabel, string establishingLinkLabel){}
 function AS_BeginIntroSequence(optional string trackingText){}
-function AS_SetHP(int targetShip, int newHP, bool initialization, optional int weaponID){}
+function AS_SetHP(int targetShip, int newHP, bool initialization, optional int weaponID=-1){}
 function AS_SetShipType(int targetShip, int Type){}
 function AS_SetResultsTitleLabels(string Title, string subtitle){}
 function AS_ShowResults(string report, int battleResult, string leaveReportButtonLabel){}
 function AS_SetAbortLabel(string Label){}
 function AS_SetEnemyEscapeTimerLabels(string Title, string secondsSufix){}
 function AS_SetAbortButtonText(string txt){}
-function AS_SetDodgeButton(string buttonLabel, optional int abilityState){}
-function AS_SetTrackButton(string buttonLabel, string trackingText, optional int abilityState){}
-function AS_SetAimButton(string buttonLabel, optional int abilityState){}
+function AS_SetDodgeButton(string buttonLabel, optional int abilityState=0){}
+function AS_SetTrackButton(string buttonLabel, string trackingText, optional int abilityState=0){}
+function AS_SetAimButton(string buttonLabel, optional int abilityState=0){}
 function int AS_MayDisengage(){}
 function AS_SetEnemyEscapeTimer(int TimeLeft){}
 function AS_SetTrackingLabelText(string txt){   }
@@ -165,35 +165,3 @@ event Destroyed(){}
 function UnlockItems(array<TItemUnlock> arrUnlocks){}
 function UnlockItem(TItemUnlock kUnlock){}
 
-
-DefaultProperties
-{
-	m_strEstablishingLinkLabel="ESTABLISHING LINK..."
-    m_strPlayerDamageLabel="DAMAGE"
-    m_strLeaveReportButtonLabel="LEAVE REPORT"
-    m_strAbortMission="ABORT"
-    m_strAbortingMission="ABORTING..."
-    m_strAbortedMission="ABORTED"
-    m_strDodgeAbility="DODGE"
-    m_strAimAbility="AIM"
-    m_strTrackAbility="TRACK"
-    m_strTrackingText="TRACKING"
-    m_strEscapeTimerTitle="CONTACT LOSS IN:"
-    m_strResult_UFOCrashed="<Bullet/> <XGParam:StrValue0/> shot down the target UFO.\\n<Bullet/> Surveillance indicates alien crew moving at the crash site."
-    m_strResult_UFODestroyed="<Bullet/> <XGParam:StrValue0/> destroyed the target UFO.\\n<Bullet/> UFO exploded in flight. Surveillance indicates neither survivors nor salvage."
-    m_strResult_UFOEscaped="<Bullet/> <XGParam:StrValue0/> was unable to sustain pursuit of the target UFO."
-    m_strResult_UFODisengaged="<Bullet/> <XGParam:StrValue0/> broke off engagement with target UFO."
-    m_strReport_NoDamage="<Bullet/> <XGParam:StrValue0/> took no damage during the encounter."
-    m_strReport_LightDamage="<Bullet/> <XGParam:StrValue0/> sustained light damage in the encounter."
-    m_strReport_HeavyDamage="<Bullet/> <XGParam:StrValue0/> sustained heavy damage in the encounter."
-    m_strReport_SevereDamage="<Bullet/> <XGParam:StrValue0/> sustained severe damage in the encounter."
-    m_strReport_ShotDown="<Bullet/> <XGParam:StrValue0/> was shot down."
-    m_strReport_Title="Interception Engagement"
-    m_strReport_Subtitle="STATUS REPORT"
-    m_strTimeSufixSymbol="s"
-    m_strAbilityDescriptions[0]="AIM: Guarantees next 2 shots will hit the target."
-    m_strAbilityDescriptions[1]="DODGE: Causes pilot to evade next 2 enemy hits."
-    m_strAbilityDescriptions[2]="TRACK: Prevents enemy escape for 5 seconds.\\nReduces approach time for short range weapons."
-    m_strCameraTag="MissionControl_UIDisplayCam_Interception"
-    DisplayTag=UIDisplay_Interception
-}

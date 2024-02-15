@@ -1,438 +1,238 @@
 class XGAbility_Targeted extends XGAbility
     native(Core)
     notplaceable;
-	
-struct native TShotInfo
-{
+//complete stub
 
+enum EXGAbilityNumTargets
+{
+   EXGAbilityNumTargets,
+    EXGAbilityNumTargets_1,
+    EXGAbilityNumTargets_2,
+    EXGAbilityNumTargets_3,
+    EXGAbilityNumTargets_4,
+    EXGAbilityNumTargets_5,
+    EXGAbilityNumTargets_6,
+    EXGAbilityNumTargets_7,
+    EXGAbilityNumTargets_8,
+    EXGAbilityNumTargets_9,
+    EXGAbilityNumTargets_10,
+    EXGAbilityNumTargets_11,
+    EXGAbilityNumTargets_12,
+    EXGAbilityNumTargets_13,
+    EXGAbilityNumTargets_14,
+    EXGAbilityNumTargets_15,
+    EXGAbilityNumTargets_MAX
 };
 
-var bool m_bCritical;
-var bool m_bHit;
-var bool m_bReflected;
-var bool m_bHasFlank;
-var bool m_bHasOpenTarget;
-var XGWeapon m_kWeapon;
-
-native simulated function XGUnit GetPrimaryTarget();
-
-final simulated function int TShotInfo_ToString(optional TShotInfo kShotInfo)
+enum ShotHUDStatType
 {
-    local int strRep, I;
+    eType_Damage,
+    eType_HitChance,
+    eType_CritChance,
+    eType_MAX
+};
 
-    I = m_kUnit.m_aCurrentStats[12];
-    // End:0x44
-    if(m_kWeapon == none)
-    {
-        return I;
-    }
-  	if(XGCharacter_Soldier(m_kUnit.GetCharacter()) != none) 
-    {
-  		class'Engine'.static.GetCurrentWorldInfo().Game.BaseMutator.Mutate("ObjectSort" $ "_" $ string(XGCharacter_Soldier(m_kUnit.GetCharacter()).m_kSoldier.iID), class'Engine'.static.GetCurrentWorldInfo().GetALocalPlayerController());
-  		I += int(Left(XGParamTag(XComEngine(class'Engine'.static.GetEngine()).LocalizeContext.FindTag("XGParam")).StrValue2, InStr(XGParamTag(XComEngine(class'Engine'.static.GetEngine()).LocalizeContext.FindTag("XGParam")).StrValue2, "_")));
-  		if(m_bCritical)
-    	{
-      		I += int(Left(split(split(split(XGParamTag(XComEngine(class'Engine'.static.GetEngine()).LocalizeContext.FindTag("XGParam")).StrValue2, "_", true), "_", true), "_", true), InStr(split(split(split(XGParamTag(XComEngine(class'Engine'.static.GetEngine()).LocalizeContext.FindTag("XGParam")).StrValue2, "_", true), "_", true), "_", true), "_")));
-      	}
-    }
-    switch(class'XGTacticalGameCore'.static.GetWeaponClass(m_kWeapon.ItemType()))
-    {
-        // End:0x91
-        case 1:
-        // End:0xA5
-        case 3:
-            strRep = 31;
-            // End:0xE3
-            break;
-        // End:0xAA
-        case 2:
-        // End:0xBE
-        case 4:
-            strRep = 40;
-            // End:0xE3
-            break;
-        // End:0xD2
-        case 5:
-            strRep = 48;
-            // End:0xE3
-            break;
-        // End:0xFFFF
-        default:
-            strRep = 0;
-            // End:0xE3
-            break;
-    }
-    // End:0x1A8
-    if(strRep > 0)
-    {
-        // End:0x1A8
-        if(class'XGTacticalGameCoreNativeBase'.static.TInventoryHasItemType(m_kUnit.GetCharacter().m_kChar.kInventory, strRep))
-        {
-            // End:0x1A8
-            if(m_kWeapon.m_kTWeapon.iSize == 1)
-            {
-                I += 1;
-            }
-        }
-    }
-    strRep = XComGameReplicationInfo(class'Engine'.static.GetCurrentWorldInfo().GRI).m_kGameCore.GetTWeapon(m_kWeapon.ItemType()).iDamage;
-    switch(GetType())
-    {
-        // End:0x267
-        case 7:
-        // End:0x26C
-        case 8:
-        // End:0x30F
-        case 53:
-            // End:0x30C
-            if(m_kUnit.m_kCharacter.HasUpgrade(93))
-            {
-                // End:0x2DB
-                if(m_kWeapon.HasProperty(4))
-                {
-                    I += 2;
-                }
-                // End:0x30C
-                if(m_kWeapon.HasProperty(7))
-                {
-                    I += 4;
-                }
-            }
-            // End:0xBA1
-            break;
-        // End:0x314
-        case 79:
-        // End:0x360
-        case 86:
-            // End:0x35F
-            if(m_kUnit.m_kCharacter.HasUpgrade(125))
-            {
-                I += 2;
-            }            
-        // End:0x365
-        case 16:
-        // End:0x36A
-        case 18:
-        // End:0x56D
-        case 82:
-            // End:0x3B5
-            if(m_kUnit.m_kCharacter.HasUpgrade(59))
-            {
-                I += 1;
-            }
-            // End:0x3FB
-            if(m_kUnit.m_kCharacter.HasUpgrade(93))
-            {
-                I += 2;
-            }
-            // End:0xBA1
-            break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-        // End:0x591
-        case 52:
-            I -= int(float(strRep) * 0.50);
-        // End:0x694
-        case 19:
-            // End:0x691
-            if(m_kUnit.m_kCharacter.HasUpgrade(93))
-            {
-                // End:0x604
-                if(m_kWeapon.ItemType() == 7)
-                {
-                    I += 2;
-                }
-                // End:0x639
-                if(m_kWeapon.ItemType() == 218)
-                {
-                    I += 2;
-                }
-                // End:0x691
-                if(m_kWeapon.ItemType() == 19)
-                {
-                    I += 2;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                }
-            }
-            // End:0xBA1
-            break;
-        // End:0x81C
-        case 48:
-            // End:0x7AF
-            if(m_bCritical)
-            {
-                // End:0x6DB
-                if(m_kWeapon.ItemType() == 6)
-                {
-                    I += 2;
-                }
-                // End:0x710
-                if(m_kWeapon.ItemType() == 213)
-                {
-                    I += 2;
-                }
-                // End:0x745
-                if(m_kWeapon.ItemType() == 12)
-                {
-                    I += 3;
-                }
-                // End:0x77A
-                if(m_kWeapon.ItemType() == 216)
-                {
-                    I += 2;
-                }
-                // End:0x7AF
-                if(m_kWeapon.ItemType() == 18)
-                {
-                    I += 4;
-                }
-            }
-            // End:0x819
-            if(m_kUnit.m_kCharacter.HasUpgrade(93))
-            {
-                // End:0x819
-                if(m_kWeapon.HasProperty(7))
-                {
-                    I += 4;
-                }
-            }
-            // End:0xBA1
-            break;
-        // End:0x8AA
-        case 12:
-            // End:0x88B
-            if(m_kUnit.m_kCharacter.HasUpgrade(93))
-            {
-                // End:0x88B
-                if(m_kWeapon.HasProperty(4))
-                {
-                    I += 2;
-                }
-            }
-            I -= ((strRep + 1) / 2);
-            // End:0xBA1
-            break;
-        // End:0x8D8
-        case 84:
-            I -= (strRep - 1);                                                                                                                                                                        
-            // End:0xBA1
-            break;
-        // End:0x8F8
-        case 49:
-            I -= (strRep - 1);
-            // End:0xBA1
-            break;
-        // End:0x978
-        case 80:
-            // End:0x975
-            if(class'XGTacticalGameCoreNativeBase'.static.TInventoryHasItemType(m_kUnit.GetCharacter().m_kChar.kInventory, 211))
-            {
-                I += 3;
-            }
-            // End:0xBA1
-            break;
-        // End:0xB9E
-        case 81:
-            // End:0x9C3
-            if(m_kUnit.m_kCharacter.HasUpgrade(121))
-            {
-                I += 4;
-            }
-            // End:0xA3B
-            if(class'XGTacticalGameCoreNativeBase'.static.TInventoryHasItemType(m_kUnit.GetCharacter().m_kChar.kInventory, 129))
-            {
-                I += 3;
-            }
-            I -= 3;
-            // End:0xAB9
-            if(m_kUnit.GetCharacter().m_kChar.kInventory.arrLargeItems[1] == 22)
-            {
-                I += 3;
-            }
-            // End:0xB2A
-            if(m_kUnit.GetCharacter().m_kChar.kInventory.arrLargeItems[2] == 22)
-            {
-                I += 3;
-            }
-            // End:0xB9B
-            if(m_kUnit.GetCharacter().m_kChar.kInventory.arrLargeItems[3] == 22)
-            {
-                I += 3;
-            }
-            // End:0xBA1
-            break;
-        // End:0xFFFF
-        default:
-            J0xBA4:
-            // End:0xBA4
-            break;
-    }
-    // End:0xCF8
-    if(m_kUnit.m_kCharacter.HasUpgrade(39))
-    {
-        // End:0xCF8
-        if(m_bCritical)
-        {
-            I += Min(4, 1 + (m_kUnit.GetNumSquadVisibleEnemies(m_kUnit) / 3));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-        }
-    }
-    // End:0xD7C
-    if(m_kUnit.m_kCharacter.HasUpgrade(41))
-    {
-        // End:0xD7C
-        if(m_bCritical)
-        {
-            // End:0xD7C
-            if(m_kUnit.RunAndGunPerkActive())
-            {
-                I += ((strRep + 2) / 3);
-            }
-        }
-    }
-    // End:0xDF9
-    if(m_kUnit.m_kCharacter.HasUpgrade(94))
-    {
-        // End:0xDF9
-        if(m_kWeapon.m_kTWeapon.iSize == 1)
-        {
-            I += 1;
-        }
-    }
-    // End:0xE63
-    if(m_kUnit.m_kCharacter.HasUpgrade(94))
-    {
-        // End:0xE63
-        if(m_kWeapon.HasProperty(2))
-        {
-            I += 1;
-        }
-    }
-    // End:0xEE8
-    if((m_kUnit.GetCharacter().m_kChar.aUpgrades[123] & 16) > 0)
-    {
-        // End:0xEE8
-        if(m_kWeapon.HasProperty(2))
-        {
-            I += 1;
-        }
-    }
-    // End:0x104A
-    if(m_kUnit.m_kCharacter.HasUpgrade(135))
-    {
-        // End:0x104A
-        if((GetPrimaryTarget()) != none)
-        {
-            // End:0x104A
-            if((GetType()) != 84)
-            {
-                // End:0x104A
-                if(XComGameReplicationInfo(class'Engine'.static.GetCurrentWorldInfo().GRI).m_kGameCore.m_kAbilities.HasAutopsyTechForChar(GetPrimaryTarget().m_kCharacter.m_kChar.iType))
-                {
-                    // End:0x103D
-                    if(m_kWeapon.HasProperty(2))
-                    {
-                        I += 1;
-                    }
-                    // End:0x104A
-                    else
-                    {
-                        I += 2;
-                    }
-                }
-            }
-        }
-    }
-    // End:0x10F2
-    if(class'XGTacticalGameCore'.static.GetWeaponClass(m_kWeapon.ItemType()) == 5)
-    {
-        // End:0x10F2
-        if((m_kUnit.GetCharacter().m_kChar.aUpgrades[123] & 4) > 0)
-        {
-            I += 1;
-        }
-    }
-    // End:0x1177
-    if(class'XGTacticalGameCoreNativeBase'.static.TInventoryHasItemType(m_kUnit.GetCharacter().m_kChar.kInventory, 219))
-    {
-        // End:0x1177
-        if(m_bCritical)
-        {
-            I += 1;
-        }
-    }
-    // End:0x13DB
-    if(m_bCritical)
-    {
-        // End:0x11DE
-        if(m_kWeapon.ItemType() == 15)
-        {
-            // End:0x11DE
-            if(!GetPrimaryTarget().IsVulnerableToElectropulse())
-            {
-                I += 1;
-            }
-        }
-        // End:0x1277
-        if(m_kWeapon.ItemType() == 99)
-        {
-            // End:0x1277
-            if(VSize(m_kUnit.Location - self.GetPrimaryTarget().Location) <= float(6 * 64))
-            {
-                I += 1;
-            }
-        }
-        // End:0x1342
-        if(m_kWeapon.ItemType() == 230)
-        {
-            // End:0x1342
-            if((GetPrimaryTarget().IsFlankedByLoc(m_kUnit.Location) || GetPrimaryTarget().IsFlankedBy(m_kUnit)) || !GetPrimaryTarget().IsInCover())
-            {
-                I += 1;
-            }
-        }
-        // End:0x13DB
-        if(m_kWeapon.ItemType() == 18)
-        {
-            // End:0x13DB
-            if(VSize(m_kUnit.Location - self.GetPrimaryTarget().Location) >= float(35 * 96))
-            {
-                I += 1;
-            }
-        }
-    }
-    // End:0x1433
-    if(m_kWeapon.ItemType() == 250)
-    {
-        // End:0x1433
-        if(GetPrimaryTarget().IsFlying())
-        {
-            I += 1;
-        }
-    }
-    // End:0x148B
-    if(m_kWeapon.ItemType() == 30)
-    {
-        // End:0x148B
-        if(GetPrimaryTarget().IsVulnerableToElectropulse())
-        {
-            I += 1;
-        }
-    }
-    // End:0x14E4
-    if(m_kWeapon.ItemType() == 245)
-    {
-        // End:0x14E4
-        if(m_kUnit.IsAffectedByAbility(20))
-        {
-            I += 1;
-        }
-    }
-    // End:0x1583
-    if(m_kUnit.GetCharacter().HasUpgrade(14))
-    {
-        // End:0x1583
-        if(m_kUnit.m_iNumTimesUsedInTheZone > 0)
-        {
-            I = Max(I - m_kUnit.m_iNumTimesUsedInTheZone, 1 - strRep);
-        }
-    }
-    return I;
-    //return ReturnValue;    
+struct native TShotInfo
+{
+	var string strTitle;
+    var array<string> arrHitBonusStrings;
+    var array<int> arrHitBonusValues;
+    var array<string> arrHitPenaltyStrings;
+    var array<int> arrHitPenaltyValues;
+    var array<string> arrCritBonusStrings;
+    var array<int> arrCritBonusValues;
+    var array<string> arrCritPenaltyStrings;
+    var array<int> arrCritPenaltyValues;
+};
+
+struct native TShotResult
+{
+    var string strTargetName;
+    var int iPossibleDamage;
+    var int iPossibleCritDamage;
+    var bool bKillshot;
+    var int iOffenseDamage;
+    var int iDefenseDamage;
+};
+
+struct native TShotHUDStat
+{
+    var int m_iAmount;
+    var int m_iPerk;
+    var init string m_strTitle;
+};
+struct native TUnitTargetInfo
+{
+    var XGUnit m_aTarget;
+    var bool m_bTargetNone;
+};
+struct native TUnitTarget
+{
+    var XGUnit m_kTarget;
+    var bool m_bClearedAffectingAbility;
+    var bool m_bClearedAffectingEffect;
+};
+struct native InitialReplicationData_XGAbility_Targeted
+{
+    var TUnitTargetInfo m_aTargets[EXGAbilityNumTargets];
+    var XGWeapon m_kWeapon;
+    var bool m_bWeaponNone;
+    var bool m_bHasFlank;
+    var bool m_bHasOpenTarget;
+    var bool m_bHasExecutioner;
+    var bool m_bHasHeightAdvantage;
+    var float m_fDistanceToTarget;
+    var int m_iHitChance;
+    var int m_iCriticalChance;
+    var bool m_bForceHit;
+    var bool m_bFreeAiming;
+};
+
+var XGWeapon m_kWeapon;
+var TUnitTarget m_aTargets[EXGAbilityNumTargets];
+var bool m_bHasFlank;
+var bool m_bHasHeightAdvantage;
+var bool m_bHasOpenTarget;
+var bool m_bHasExecutioner;
+var bool m_bHit;
+var bool m_bCritical;
+var bool m_bReflected;
+var bool m_bIgnoreCalculation;
+var bool m_bHit_NonUnitTarget;
+var bool m_bFreeAiming;
+var bool m_bTargetUpkeep;
+var private bool m_bInitialReplicationDataReceived_XGAbility_Targeted;
+var repnotify bool m_bRemoveAbility;
+var bool m_bIsAbilityRemoving;
+var private bool m_bDestroyingViaRemovedClient;
+var bool m_bSave;
+var float m_fDistanceToTarget;
+var int m_iHitChance;
+var int m_iCriticalChance;
+var int m_iHitChance_NonUnitTarget;
+var int m_iActualDamage;
+var int m_iActualEnvironmentDamage;
+var XComProjectile m_kProjectile;
+var XGVolume m_kVolume;
+var Vector m_vTargetLocation;
+var int m_iPrimaryMultiShotTarget;
+var const localized string m_strFlankText;
+var const localized string m_strUnknownWeapon;
+var const localized string m_strPenaltySnapShot;
+var const localized string m_strBonusTracerBeams;
+var const localized string m_strBonusAim;
+var const localized string m_strBonusFlanking;
+var const localized string m_strPenaltyLowCover;
+var const localized string m_strPenaltyHighCover;
+var const localized string m_strHunker;
+var const localized string m_strPoison;
+var const localized string m_strPenaltyDefense;
+var const localized string m_strPenaltyEvasion;
+var const localized string m_strHeightBonus;
+var const localized string m_strItemBonus;
+var const localized string m_strItemPenalty;
+var const localized string m_strChanceToStun;
+var const localized string m_strDroneHack;
+var const localized string m_strCheating;
+var const localized string m_strBonusCritWeapon;
+var const localized string m_strBonusCritPistol;
+var const localized string m_strBonusCritEnemyNotInCover;
+var const localized string m_strBonusCritDistance;
+var const localized string m_strBonusCritPrecision;
+var const localized string m_strBonusCritAggression;
+var const localized string m_strBonusCritCombatDrugs;
+var const localized string m_strPenaltyCritEnemyHardened;
+var TShotHUDStat m_shotHUDDMGStats[16];
+var TShotHUDStat m_shotHUDHitChanceStats[16];
+var TShotHUDStat m_shotHUDCritChanceStats[16];
+var private repnotify InitialReplicationData_XGAbility_Targeted m_kInitialReplicationData_XGAbility_Targeted;
+
+replication
+{
+    if(bNetInitial && Role == ROLE_Authority)
+        m_kInitialReplicationData_XGAbility_Targeted;
+
+    if(bNetDirty && Role == ROLE_Authority)
+        m_aTargets, m_bCritical, 
+        m_bHit, m_bHit_NonUnitTarget, 
+        m_bReflected, m_bRemoveAbility, 
+        m_iActualDamage, m_iActualEnvironmentDamage, 
+        m_iCriticalChance, m_iHitChance, 
+        m_kVolume, m_shotHUDCritChanceStats, 
+        m_shotHUDDMGStats, m_shotHUDHitChanceStats;
 }
+
+function bool ShouldSaveForCheckpoint(){}
+function ApplyCheckpointRecord(){}
+static final simulated function int TShotInfo_ToString(optional TShotInfo kShotInfo){}
+simulated event ReplicatedEvent(name VarName){}
+native function SetShotTitleFromPerkType(XComPerkManager kPerkMan, TShotHUDStat kShot);
+function DecRefRemovingClient(XComTacticalController kTacticalController){}
+simulated function ClearMultiShotTargets(){}
+simulated function AddMultiShotTarget(XGUnit kTarget){}
+native simulated function XGUnit GetPrimaryTarget();
+native simulated function int GetNumTargets();
+native simulated function int GetEmptyTargetIndex();
+simulated function int FindTargetIndex(XGUnit kTarget){}
+simulated function bool GetTargets(out array<XGUnit> aTargets){}
+native function ShotInit(int iAbility, array<XGUnit> arrTargets, XGWeapon kWeapon, optional bool bReactionFire);
+event FillInitialReplicationStruct(array<XGUnit> arrTargets){}
+simulated function bool InternalIsInitialReplicationComplete(){}
+simulated function OnProjectileImpact(XComProjectile kProjectile){}
+native function bool InternalCheckAvailable();
+final simulated function RemoveAbility(){}
+final simulated event RemoveAbilityFromTarget(out TUnitTarget kUnitTarget){}
+final simulated event RemoveEffectsFromTarget(out TUnitTarget kUnitTarget){}
+simulated function string GetFlankText(){}
+simulated function string GetDistanceText(){}
+simulated function int GetHitChance(){}
+simulated function int GetCriticalChance(){}
+simulated function GetUIHitChance(out int iUIHitChance, out int iUICriticalChance){}
+function int GraduatedOdds(int iHitChance, XGPlayer kHumanPlayer, bool bCantLose){}
+function int AdjustToHit(int iHitChance){}
+simulated function int GetScatterChance(float fUnrealDist){}
+function RollForHit(XGAction_Fire kFireAction){}
+simulated function EndTurnCheck(){}
+function RollForCritical(){}
+simulated function bool IsHit(){}
+simulated function bool IsCritical(){}
+simulated function bool ShouldShowPercentage(){}
+simulated function bool ShouldShowCritPercentage(){}
+simulated function bool IsReflected(){}
+simulated function bool IsFreeAiming(){}
+simulated function bool CanFreeAim(){}
+simulated function SetFreeAim(bool bFreeAim){}
+reliable server function ServerSetFreeAim(bool bFreeAim){}
+native function int CalcHitModFromPerks(int iHitChance, float fDistanceToTarget, bool heightAdvantage);
+native function int CalcCritModFromPerks(XGAbility_Targeted kAbility, int iCritChance, float fDistanceToTarget, bool heightAdvantage);
+native function int CalcHitChance();
+native function int CalcCriticalChance();
+native simulated function int CalcSuppression();
+simulated function int GetPossibleDamage(){}
+function string GetWeaponName(){}
+function int GetPossibleEnvironmentalDamage(){}
+function CalcDamage(){}
+native simulated function int GetPrecisionShotPerkDamageDamageAdd();
+native simulated function int GetMayhemPerkBonusDamage();
+native simulated function int GetXenobiologyOverlaysBonusDamage();
+native simulated function AddShotHUDStat(XGAbility_Targeted.ShotHUDStatType StatType, const out TShotHUDStat kStat);
+native simulated function AddDamageStat(out float BaseDamage, float fDelta, optional string strTitle=" | ", optional XGTacticalGameCoreNativeBase.EPerkType iPerk);
+native simulated function AddHitChanceStat(out int iHitChance, int iDelta, optional string strTitle=" | ", optional XGTacticalGameCoreNativeBase.EPerkType iPerk, optional string strBuffTitleForce);
+native simulated function AddCritChanceStat(out int iCritChance, int iDelta, optional string strTitle=" | ", optional XGTacticalGameCoreNativeBase.EPerkType iPerk);
+native simulated function int CalcOverallDamageModFromPerk(float BaseDamage);
+simulated function int GetActualDamage(){}
+simulated function int GetActualEnvironmentalDamage(){}
+simulated function int CalcPsiLanceDamage(int iBaseDamage){}
+simulated function bool AI_HasPriorityOver(XGAbility_Targeted kAltAbility){}
+simulated function GetShotSummaryModFromPerks(out TShotResult kResult, out TShotInfo kInfo){}
+simulated function GetShotSummary(out TShotResult kResult, out TShotInfo kInfo){}
+simulated function GetCritSummary(out TShotResult kResult, out TShotInfo kInfo){}
+simulated function GetCritSummaryModFromPerks(out TShotResult kResult, out TShotInfo kInfo){}
+simulated function string BuildModString(int iValue, string _strName, optional bool bPercentage){}
+function ApplyCost(){}
+simulated function bool IsBlasterLauncherShot(){}
+simulated function bool IsRocketShot(){}
+simulated function bool CanFireWeapon(){}
+simulated event bool CanTargetUnit(XGUnit kUnit){}
+simulated function XComPerkManager PERKS(){}
+native simulated function int DurationExisted();

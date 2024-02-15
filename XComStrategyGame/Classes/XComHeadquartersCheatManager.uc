@@ -1,8 +1,18 @@
 class XComHeadquartersCheatManager extends XComCheatManager within XComHeadquartersController;
 
+var bool bSeeAll;
+var bool bDoGlobeView;
+var bool bFreeCam;
+var bool bDebugAIEvents;
+var bool bAllowDeluge;
+var bool bDumpSkelPoseUpdates;
+var ECharacter iForceAlienType;
+var XGEntity kEntity;
+
 exec function GivePerk(string strName)
 {
-    local XGSoldierUI kSoldierUI;
+    /**
+	local XGSoldierUI kSoldierUI;
     local XComHQPresentationLayer kPres;
     local XComPlayerController PC;
     local int iIndex;
@@ -11,7 +21,6 @@ exec function GivePerk(string strName)
     local XComPerkManager kPerkMan;
     local string strPerkName;
 
-	/** 
     kPerkMan = XComHeadquartersGame(class'Engine'.static.GetCurrentWorldInfo().Game).GetGameCore().GetHQ().GetBarracks().m_kPerkManager;
 	PC = XComPlayerController(Outer.GetALocalPlayerController());
 	kPres = XComHQPresentationLayer(PC.m_Pres);

@@ -12,15 +12,15 @@ simulated function OnInit() {}
 
 simulated function XGMissionControlUI GetMgr(optional int iStaringView) {}
 
-protected simulated function UpdateSimpleAlertData() {}
+simulated function UpdateSimpleAlertData() {}
 
-protected simulated function UpdateButtonText() {}
+simulated function UpdateButtonText() {}
 
-protected simulated function AS_SetTitle(string Title) {}
+simulated function AS_SetTitle(string Title) {}
 
-protected simulated function AS_SetText(string Text) {}
+simulated function AS_SetText(string Text) {}
 
-protected simulated function AS_SetButtonText(string Text) {}
+simulated function AS_SetButtonText(string Text) {}
 
 simulated function CloseAlert(optional int inputCode) {}
 
@@ -30,7 +30,7 @@ simulated function bool OnMouseEvent(int Cmd, array<string> args){}
 
 simulated function bool OnUnrealCommand(int Cmd, int Arg){}
 
-private final simulated function UpdateButtonHelp(){}
+simulated function UpdateButtonHelp(){}
 
 simulated function ClearMissionControlAlertReference(){}
 

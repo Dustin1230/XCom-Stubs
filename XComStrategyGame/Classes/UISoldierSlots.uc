@@ -1,4 +1,5 @@
 class UISoldierSlots extends UI_FxsShellScreen;
+//complete stub
 
 enum UISlotOptionCategories
 {
@@ -37,11 +38,11 @@ simulated function OnReceiveFocus(){}
 simulated function OnLoseFocus(){}
 
 simulated function UpdateDataFromGame(TTableMenu kTable){}
-final simulated function UpdateDisplay(){}
-private final simulated function AS_ClearSoldiers(){}
-private final simulated function AS_AddSlot(string _name, string _status, string _buttonLabel, bool IsDisabled){}
-private final simulated function AS_AddEmptySlot(string _slotLabel, string _buttonLabel){}
-protected simulated function AS_SetTitleLabels(string _titleLabel, string _statusLabel){}
+simulated function UpdateDisplay(){}
+final simulated function AS_ClearSoldiers(){}
+final simulated function AS_AddSlot(string _name, string _status, string _buttonLabel, bool IsDisabled){}
+final simulated function AS_AddEmptySlot(string _slotLabel, string _buttonLabel){}
+simulated function AS_SetTitleLabels(string _titleLabel, string _statusLabel){}
 simulated function AS_SetSelected(string Id){}
 simulated function Hide(){}
 simulated function Show(){}

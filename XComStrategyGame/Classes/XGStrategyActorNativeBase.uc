@@ -2,6 +2,25 @@ class XGStrategyActorNativeBase extends Actor
     native
 	config(GameData)
     notplaceable;
+//complete stub
+
+const NUM_STARTING_INTERCEPTOR_BAYS = 4;
+const INTERCEPTOR_MISSION_LIMIT = 1;
+const INTERCEPTOR_FLIGHT_TIME = 43200.0;
+const NUM_CODE_PIECES = 1;
+const NUM_TERRAIN_WIDE = 7;
+const NUM_TERRAIN_HIGH = 5;
+const BASE_REMOVAL_DAYS = 0;
+const Paused = 0;
+const ONE_MINUTE = 60;
+const TEN_MINUTES = 600;
+const FIFTEEN_MINUTES = 900;
+const THIRTY_MINUTES = 1800;
+const ONE_HOUR = 3600;
+const TWELVE_HOURS = 43200;
+const TWENTY_FOUR_HOURS = 86400;
+const MAXIMUM_TIMESLICE = 60;
+const SCAN_TIMESLICE = 1800;
 
 enum EMissionDifficulty
 {
@@ -762,6 +781,103 @@ enum EEntityGraphic
     eEntityGraphic_MAX
 };
 
+struct TSubObjective
+{
+    var ESubObjective eType;
+    var string strObjective;
+    var string strInDepth;
+    var EObjectiveStatus eStatus;
+};
+struct TGameObjective
+{
+    var EGameObjective eType;
+    var EObjectiveStatus eStatus;
+    var string strName;
+    var XGTacticalScreenMgr.EImage eObjImage;
+    var array<TSubObjective> arrSubObjectives;
+
+};
+
+struct THQAnimCharacter
+{
+    var EHQAnimCharacter eChar;
+    var int iData;
+
+};
+
+struct THQAnim
+{
+    var EHQAnimType eType;
+    var EHQAnimLocation ELocation;
+    var array<THQAnimCharacter> arrChars;
+
+};
+
+struct TSatBonus
+{
+    var int iNumScientists;
+    var int iNumEngineers;
+
+};
+
+struct TSatellite
+{
+    var int iType;
+    var Vector2D v2Loc;
+    var XGEntity kSatEntity;
+    var int iCountry;
+    var int iTravelTime;
+
+};
+
+struct TSatNode
+{
+    var Vector2D v2Coords;
+    var int iCountry;
+
+};
+struct THQEvent
+{
+    var eHQEvent EEvent;
+    var int iData;
+    var int iHours;
+    var int iData2;
+
+};
+struct TShipWeapon
+{
+    var string strName;
+    var EShipWeapon eType;
+    var int iAmmo;
+    var float fFiringTime;
+    var int iRange;
+    var int iDamage;
+    var int iAP;
+    var int iToHit;
+
+};
+struct TStaffOrder
+{
+    var int iNumStaff;
+    var int iStaffType;
+    var int iHours;
+};
+struct TShipOrder
+{
+    var int iNumInterceptors;
+    var int iDestinationContinent;
+    var int iShipType;
+    var int iHours;
+
+};
+
+struct TShipTransfer
+{
+    var int iNumShips;
+    var int iShipType;
+    var int iDestination;
+    var int iHours;
+};
 struct TItem
 {
     var string strName;
@@ -803,26 +919,6 @@ struct TFacility
     var int iCategory;
     var int iImage;
 
-    structdefaultproperties
-    {
-        strName=""
-        eFacility=EFacilityType.eFacility_None
-        iItem=0
-        iCash=0
-        iMaintenance=0
-        iElerium=0
-        iAlloys=0
-        iSize=0
-        iPower=0
-        iTime=0
-        iTechReq=0
-        iItemReq=0
-        iStructureReq=0
-        strBriefSummary=""
-        strDeepSummary=""
-        iCategory=0
-        iImage=0
-    }
 };
 
 struct TResearchCost
@@ -833,14 +929,6 @@ struct TResearchCost
     var array<int> arrItems;
     var array<int> arrItemQuantities;
 
-    structdefaultproperties
-    {
-        iCash=0
-        iElerium=0
-        iAlloys=0
-        arrItems=none
-        arrItemQuantities=none
-    }
 };
 
 struct TTech
@@ -860,23 +948,6 @@ struct TTech
     var TResearchCost kCost;
     var EResearchCredits eCreditGranted;
 
-    structdefaultproperties
-    {
-        strName=""
-        iTech=0
-        iHours=0
-        bCustomReqs=false
-        iItemReq=0
-        iTechReq=0
-        iContBonus=0
-        iImage=0
-        strSummary=""
-        strReport=""
-        strCustom=""
-        strCodename=""
-        kCost=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none)
-        eCreditGranted=EResearchCredits.eResearchCredit_None
-    }
 };
 
 struct TGeneModTech
@@ -889,16 +960,6 @@ struct TGeneModTech
     var int iCash;
     var EPerkType ePerk;
 
-    structdefaultproperties
-    {
-        strName=""
-        eGeneTech=EGeneModTech.eGeneMod_None
-        eTechReq=ETechType.eTech_None
-        iHours=0
-        iMeld=0
-        iCash=0
-        ePerk=EPerkType.ePerk_None
-    }
 };
 
 struct TFoundryTech
@@ -916,21 +977,6 @@ struct TFoundryTech
     var string strSummary;
     var TResearchCost kCost;
 
-    structdefaultproperties
-    {
-        strName=""
-        iFoundryTech=0
-        iHours=0
-        iCash=0
-        iElerium=0
-        iAlloys=0
-        iEngineers=0
-        iItemReq=0
-        iTechReq=0
-        iImage=0
-        strSummary=""
-        kCost=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none)
-    }
 };
 
 struct TResearchCredit
@@ -941,14 +987,6 @@ struct TResearchCredit
     var string strSummary;
     var int iImage;
 
-    structdefaultproperties
-    {
-        eCreditType=EResearchCredits.eResearchCredit_None
-        iBonus=0
-        strName=""
-        strSummary=""
-        iImage=0
-    }
 };
 
 struct TOTSTech
@@ -962,17 +1000,6 @@ struct TOTSTech
     var int iImage;
     var string strSummary;
 
-    structdefaultproperties
-    {
-        strName=""
-        iOTSTech=0
-        iRankRequired=0
-        iCash=0
-        iNumCombos=0
-        iComboType=0
-        iImage=0
-        strSummary=""
-    }
 };
 
 struct TContinentBonus
@@ -981,12 +1008,6 @@ struct TContinentBonus
     var string strTitle;
     var string strDesc;
 
-    structdefaultproperties
-    {
-        iImage=0
-        strTitle=""
-        strDesc=""
-    }
 };
 
 struct TCountry
@@ -1004,28 +1025,7 @@ struct TCountry
     var bool bDeveloped;
     var bool bCouncilMember;
 
-    structdefaultproperties
-    {
-        iEnum=0
-        strName=""
-        strNameWithArticle=""
-        strNameWithArticleLower=""
-        strNamePossessive=""
-        strNameAdjective=""
-        iContinent=0
-        iFunding=0
-        iScience=0
-        iEngineering=0
-        bDeveloped=false
-        bCouncilMember=false
-    }
-};
 
-struct TStaffOrder
-{
-    var int iNumStaff;
-    var int iStaffType;
-    var int iHours;
 };
 
 struct TShipUIInfo
@@ -1040,51 +1040,23 @@ struct TShipUIInfo
     var TText txtFuel;
     var TText txtRange;
 
-    structdefaultproperties
-    {
-        txtName=(StrValue="",iState=0)
-        txtStatus=(StrValue="",iState=0)
-        txtKills=(StrValue="",iState=0)
-        txtWeapons=(StrValue="",iState=0)
-        txtArmor=(StrValue="",iState=0)
-        txtEngines=(StrValue="",iState=0)
-        txtSpeed=(StrValue="",iState=0)
-        txtFuel=(StrValue="",iState=0)
-        txtRange=(StrValue="",iState=0)
-    }
 };
-
-struct TShipOrder
+struct TShip
 {
-    var int iNumInterceptors;
-    var int iDestinationContinent;
-    var int iShipType;
-    var int iHours;
-
-    structdefaultproperties
-    {
-        iNumInterceptors=0
-        iDestinationContinent=0
-        iShipType=0
-        iHours=0
-    }
+    var string strName;
+    var string strSize;
+    var EShipType eType;
+    var int iSpeed;
+    var int iEngagementSpeed;
+    var int iHP;
+    var int iAP;
+    var int iArmor;
+    var int iRange;
+    var array<int> arrSalvage;
+    var array<int> arrWeapons;
+    var int iImage;
 };
 
-struct TShipTransfer
-{
-    var int iNumShips;
-    var int iShipType;
-    var int iDestination;
-    var int iHours;
-
-    structdefaultproperties
-    {
-        iNumShips=0
-        iShipType=0
-        iDestination=0
-        iHours=0
-    }
-};
 
 struct TInterceptMission
 {
@@ -1093,13 +1065,13 @@ struct TInterceptMission
     var int iInterceptMode;
     var int iInterceptResult;
 
-    structdefaultproperties
-    {
-        kUFOTarget=none
-        arrInterceptors=none
-        iInterceptMode=0
-        iInterceptResult=0
-    }
+
+};
+struct TGeoscapeAlert
+{
+    var EGeoscapeAlert eType;
+    var array<int> arrData;
+
 };
 
 struct TMonthlySummary
@@ -1134,20 +1106,16 @@ struct TMonthlySummary
     var array<int> arrCountriesAdding;
 };
 
-struct TSubObjective
+struct TCouncilMeeting
 {
-    var ESubObjective eType;
-    var string strObjective;
-    var string strInDepth;
-    var EObjectiveStatus eStatus;
-
-    structdefaultproperties
-    {
-        eType=ESubObjective.eSubObj_BuildAlienContainment
-        strObjective=""
-        strInDepth=""
-        eStatus=EObjectiveStatus.eObjStatus_NotStarted
-    }
+    var string strSummary;
+    var array<TMonthlySummary> arrContinentSummaries;
+    var int iFunding;
+    var int iScientists;
+    var int iEngineers;
+    var TMonthlySummary kSummary;
+    var EMonthlyGrade eGrade;
+    var array<ECountry> arrLeavingCountries;
 };
 
 struct TProjectCost
@@ -1160,30 +1128,12 @@ struct TProjectCost
     var int iStaffTypeReq;
     var int iStaffNumReq;
     var int iBarracksReq;
-
-    structdefaultproperties
-    {
-        iCash=0
-        iElerium=0
-        iAlloys=0
-        arrItems=none
-        arrItemQuantities=none
-        iStaffTypeReq=0
-        iStaffNumReq=0
-        iBarracksReq=0
-    }
 };
 
 struct TCostSummary
 {
     var array<TText> arrRequirements;
     var string strHelp;
-
-    structdefaultproperties
-    {
-        arrRequirements=none
-        strHelp=""
-    }
 };
 
 struct TObjectSummary
@@ -1195,15 +1145,6 @@ struct TObjectSummary
     var bool bCanAfford;
     var int ItemType;
 
-    structdefaultproperties
-    {
-        imgObject=(iImage=0,strLabel="",iState=0,strPath="")
-        txtRequirementsLabel=(StrValue="",iState=0)
-        txtSummary=(StrValue="",iState=0)
-        kCost=(arrRequirements=none,strHelp="")
-        bCanAfford=false
-        ItemType=0
-    }
 };
 
 struct TItemProject
@@ -1220,22 +1161,6 @@ struct TItemProject
     var bool bAdjusted;
     var TProjectCost kRebate;
     var TProjectCost kOriginalCost;
-
-    structdefaultproperties
-    {
-        iIndex=0
-        eItem=EItemType.eItem_NONE
-        iEngineers=0
-        iMaxEngineers=0
-        iQuantity=0
-        iQuantityLeft=0
-        iHoursLeft=0
-        bNotify=false
-        Brush=false
-        bAdjusted=false
-        kRebate=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-        kOriginalCost=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-    }
 };
 struct TFacilityProject
 {
@@ -1249,18 +1174,6 @@ struct TFacilityProject
     var TProjectCost kRebate;
     var TProjectCost kOriginalCost;
 
-    structdefaultproperties
-    {
-        eFacility=EFacilityType.eFacility_None
-        iHoursLeft=0
-        bNotify=false
-        Brush=false
-        X=0
-        Y=0
-        iIndex=0
-        kRebate=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-        kOriginalCost=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-    }
 };
 
 struct TFoundryProject
@@ -1276,19 +1189,6 @@ struct TFoundryProject
     var TProjectCost kRebate;
     var TProjectCost kOriginalCost;
 
-    structdefaultproperties
-    {
-        eTech=0
-        iEngineers=0
-        iMaxEngineers=0
-        iHoursLeft=0
-        Brush=false
-        bNotify=false
-        iIndex=0
-        bAdjusted=false
-        kRebate=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-        kOriginalCost=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-    }
 };
 
 struct TAlloyProject
@@ -1301,16 +1201,7 @@ struct TAlloyProject
     var int iIndex;
     var TProjectCost kRebate;
 
-    structdefaultproperties
-    {
-        iEngineers=0
-        iHoursLeft=0
-        iAlloyHoursLeft=0
-        iAlloysProduced=0
-        bNotify=false
-        iIndex=0
-        kRebate=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-    }
+
 };
 
 struct TConstructionProject
@@ -1322,15 +1213,6 @@ struct TConstructionProject
     var int Y;
     var TProjectCost kRebate;
 
-    structdefaultproperties
-    {
-        iProjectType=0
-        iHoursLeft=0
-        iIndex=0
-        X=0
-        Y=0
-        kRebate=(iCash=0,iElerium=0,iAlloys=0,arrItems=none,arrItemQuantities=none,iStaffTypeReq=0,iStaffNumReq=0,iBarracksReq=0)
-    }
 };
 
 struct TEngQueueItem
@@ -1339,111 +1221,9 @@ struct TEngQueueItem
     var bool bFoundry;
     var int iIndex;
 
-    structdefaultproperties
-    {
-        bItem=false
-        bFoundry=false
-        iIndex=0
-    }
 };
 
-struct TGameObjective
-{
-    var EGameObjective eType;
-    var EObjectiveStatus eStatus;
-    var string strName;
-    var XGTacticalScreenMgr.EImage eObjImage;
-    var array<TSubObjective> arrSubObjectives;
 
-    structdefaultproperties
-    {
-        eType=EGameObjective.eObj_None
-        eStatus=EObjectiveStatus.eObjStatus_NotStarted
-        strName=""
-        eObjImage=EImage.eImage_None
-        arrSubObjectives=none
-    }
-};
-
-struct THQAnimCharacter
-{
-    var EHQAnimCharacter eChar;
-    var int iData;
-
-    structdefaultproperties
-    {
-        eChar=EHQAnimCharacter.eHQAnimChar_None
-        iData=0
-    }
-};
-
-struct THQAnim
-{
-    var EHQAnimType eType;
-    var EHQAnimLocation ELocation;
-    var array<THQAnimCharacter> arrChars;
-
-    structdefaultproperties
-    {
-        eType=EHQAnimType.eHQAnim_None
-        ELocation=EHQAnimLocation.eHQAnimLoc_None
-        arrChars=none
-    }
-};
-
-struct TSatBonus
-{
-    var int iNumScientists;
-    var int iNumEngineers;
-
-    structdefaultproperties
-    {
-        iNumScientists=0
-        iNumEngineers=0
-    }
-};
-
-struct TSatellite
-{
-    var int iType;
-    var Vector2D v2Loc;
-    var XGEntity kSatEntity;
-    var int iCountry;
-    var int iTravelTime;
-
-    structdefaultproperties
-    {
-        iType=0
-        v2Loc=(X=0.0,Y=0.0)
-        kSatEntity=none
-        iCountry=0
-        iTravelTime=0
-    }
-};
-
-struct TSatNode
-{
-    var Vector2D v2Coords;
-    var int iCountry;
-
-    structdefaultproperties
-    {
-        v2Coords=(X=0.0,Y=0.0)
-        iCountry=0
-    }
-};
-
-struct TCouncilMeeting
-{
-    var string strSummary;
-    var array<TMonthlySummary> arrContinentSummaries;
-    var int iFunding;
-    var int iScientists;
-    var int iEngineers;
-    var TMonthlySummary kSummary;
-    var EMonthlyGrade eGrade;
-    var array<ECountry> arrLeavingCountries;
-};
 
 
 struct TCountryResult
@@ -1486,18 +1266,6 @@ struct TObjective
     var array<int> arrRadii;
     var array<int> arrRandDays;
 
-    structdefaultproperties
-    {
-        eType=EAlienObjective.eObjective_Recon
-        strName=""
-        strEOMDescription=""
-        bAbandon=false
-        arrStartDates=none
-        arrUFOs=none
-        arrMissions=none
-        arrRadii=none
-        arrRandDays=none
-    }
 };
 
 struct TUFORecord
@@ -1507,81 +1275,6 @@ struct TUFORecord
     var ECountry ECountry;
     var EUFOMissionResult eResult;
     var int iMonth;
-
-    structdefaultproperties
-    {
-        eUFO=EShipType.eShip_None
-        eObjective=EAlienObjective.eObjective_Recon
-        ECountry=ECountry.eCountry_USA
-        eResult=EUFOMissionResult.eUMR_Undetected
-        iMonth=0
-    }
-};
-
-struct TShip
-{
-    var string strName;
-    var string strSize;
-    var EShipType eType;
-    var int iSpeed;
-    var int iEngagementSpeed;
-    var int iHP;
-    var int iAP;
-    var int iArmor;
-    var int iRange;
-    var array<int> arrSalvage;
-    var array<int> arrWeapons;
-    var int iImage;
-};
-struct TShipWeapon
-{
-    var string strName;
-    var EShipWeapon eType;
-    var int iAmmo;
-    var float fFiringTime;
-    var int iRange;
-    var int iDamage;
-    var int iAP;
-    var int iToHit;
-
-    structdefaultproperties
-    {
-        strName=""
-        eType=EShipWeapon.eShipWeapon_None
-        iAmmo=0
-        fFiringTime=0.0
-        iRange=0
-        iDamage=0
-        iAP=0
-        iToHit=0
-    }
-};
-struct TGeoscapeAlert
-{
-    var EGeoscapeAlert eType;
-    var array<int> arrData;
-
-    structdefaultproperties
-    {
-        eType=eGA_UFODetected
-        arrData=none
-    }
-};
-
-struct THQEvent
-{
-    var eHQEvent EEvent;
-    var int iData;
-    var int iHours;
-    var int iData2;
-
-    structdefaultproperties
-    {
-        EEvent=eHQEvent.eHQEvent_Research
-        iData=0
-        iHours=0
-        iData2=0
-    }
 };
 
 var config int START_DAY;
@@ -1628,6 +1321,7 @@ function XGTacticalGameCore TACTICAL()
 function XGHeadQuarters HQ()
 {   
 }
+function XGExaltSimulation EXALT(){}
 
 function XGGeoscape GEOSCAPE()
 { 

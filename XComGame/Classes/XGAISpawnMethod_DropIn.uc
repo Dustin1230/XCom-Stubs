@@ -1,5 +1,5 @@
-class XGAISpawnMethod_DropIn extends XGAISpawnMethod
-    dependsOn(XGGameData);
+class XGAISpawnMethod_DropIn extends XGAISpawnMethod;
+//complete stub
 
 var() int m_iDropHeight;
 
@@ -10,3 +10,4 @@ function InitDropIn(int iDropHeight, bool bUseOverwatch, bool bTriggerOverwatch,
 function bool OnActivate_UpdateSpawnPoint(out XComSpawnPoint_Alien kSpawnPt, out Vector vSpawnLoc)
 {
 }
+function bool OnSpawnAlien_AddTraversal(XComSpawnPoint_Alien kSpawnPt, Vector vSpawnLoc){}

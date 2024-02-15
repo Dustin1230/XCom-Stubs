@@ -2,6 +2,7 @@ class XGCountry extends XGStrategyActor
     hidecategories(Navigation)
     config(GameData)
     notplaceable;
+//complete stub
 
 struct CheckpointRecord
 {
@@ -15,18 +16,6 @@ struct CheckpointRecord
     var array<TUFORecord> m_arrUFORecord;
     var XGEntity m_kEntity;
 
-    structdefaultproperties
-    {
-        m_kTCountry=(iEnum=0,strName="",strNameWithArticle="",strNameWithArticleLower="",strNamePossessive="",strNameAdjective="",iContinent=0,iFunding=0,iScience=0,iEngineering=0,bDeveloped=false,bCouncilMember=false)
-        m_bSecretPact=false
-        m_arrCities=none
-        m_arrBounds=none
-        m_iFunding=0
-        m_iPanic=0
-        m_bSatellite=false
-        m_arrUFORecord=none
-        m_kEntity=none
-    }
 };
 var TCountry m_kTCountry;
 var bool m_bSecretPact;

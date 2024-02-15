@@ -14,12 +14,12 @@ simulated function XGMissionControlUI GetMgr(optional int iStaringView){}
 simulated function bool OnUnrealCommand(int Cmd, int Arg){}
 simulated function bool OnMouseEvent(int Cmd, array<string> args){}
 function OnFlashCommand(string Cmd, string Arg){}
-final simulated function TimeScaleChanged(){}
+simulated function TimeScaleChanged(){}
 protected simulated function UpdateData(){}
-final simulated function RealizeSelected(){}
+simulated function RealizeSelected(){}
 simulated function OnReceiveFocus(){}
 simulated function Show(){}
 simulated function Hide(){}
-final simulated function AS_SetTitle(string Title){}
-final simulated function AS_AddOption(int Index, string Text, int State, string Icon){}
+simulated function AS_SetTitle(string Title){}
+simulated function AS_AddOption(int Index, string Text, int State, string Icon){}
 simulated function Remove(){}

@@ -1,5 +1,6 @@
 class XGLocalizeContext extends Object
     native(Core);
+//complete stub
 
 var array<XGLocalizeTag> LocalizeTags;
 

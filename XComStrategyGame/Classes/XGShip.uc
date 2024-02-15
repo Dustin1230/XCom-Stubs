@@ -1,4 +1,5 @@
 class XGShip extends XGStrategyActor;
+//complete stub
 
 struct CheckpointRecord
 {
@@ -11,46 +12,47 @@ struct CheckpointRecord
     var int m_iStatus;
     var XGEntity m_kEntity;
     var XGGeoscape m_kGeoscape;
-
-    structdefaultproperties
-    {
-        m_kTShip=(strName="",strSize="",eType=EShipType.eShip_None,iSpeed=0,iEngagementSpeed=0,iHP=0,iAP=0,iArmor=0,iRange=0,arrSalvage=none,arrWeapons=none,iImage=0)
-        m_v2Coords=(X=0.0,Y=0.0)
-        m_v2Destination=(X=0.0,Y=0.0)
-        m_vHeading=(X=0.0,Y=0.0,Z=0.0)
-        m_iHP=0
-        m_kMission=none
-        m_iStatus=0
-        m_kEntity=none
-        m_kGeoscape=none
-    }
 };
 
 var TShip m_kTShip;
-var int m_iHP;
 var int m_iStatus;
 var Vector2D m_v2Coords;
 var Vector2D m_v2Destination;
 var Vector m_vHeading;
+var int m_iHP;
 var XGMission m_kMission;
 var array<float> m_afWeaponCooldown;
+var export editinline AudioComponent m_sndEngine;
 var float m_fExpectedFlightTime;
 var float m_fAdjustedFlightTime;
 var float m_fCurrentFlightTime;
+var XGGeoscape m_kGeoscape;
+var const localized string m_strPostFixMPH;
+var const localized string m_strPostFixMiles;
 
-function int GetHP() {}
-function int GetHullStrength() {}
-function int GetRange() {}
-function int GetSpeed() {}
-function Vector2D GetScreenSpeedPerSecond() {}
-function XGGameData.EShipType GetType() {}
-function array<TShipWeapon> GetWeapons() {}
-function bool IsAlienShip() {}
-function bool IsDamaged() {}
-function bool IsHumanShip() {}
-function bool IsFlying() {}
+function Update(float fDeltaT);
+function InitSound();
+function UpdateWeapons(float fDeltaT){}
+function ResetWeapons(){}
+function Init(TShip kTShip){}
+function InitWatchVariables(){}
+function UpdateEngineSound(){}
+function bool CanPlayEngineSound(){}
+function int GetHP(){}
+function bool IsDamaged(){}
+function Vector2D GetCoords(){}
+function bool IsFlying(){}
+function int GetStatus(){}
 function string GetStatusString(){}
+function TShipUIInfo GetUIInfo(){}
 function int GetStatusUIState(){}
-function ResetWeapons() {}
-function UpdateWeapons(float fDeltaT) {}
-function Vector2D GetCoords() {}
+function SetMission(XGMission kMission){}
+function EShipType GetType(){}
+function int GetSpeed(){}
+function int GetRange(){}
+function int GetHullStrength(){}
+function array<TShipWeapon> GetWeapons(){}
+function Vector2D GetScreenSpeedPerSecond(){}
+function string GetSpeedString(){}
+function bool IsAlienShip(){}
+function bool IsHumanShip(){}

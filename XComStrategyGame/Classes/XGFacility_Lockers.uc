@@ -1,4 +1,5 @@
 class XGFacility_Lockers extends XGFacility;
+//complet stub
 
 enum EInventorySlot
 {
@@ -15,16 +16,7 @@ struct TLockerItem
     var int iQuantity;
     var bool bTechLocked;
     var bool bClassLocked;
-    var XGTacticalGameCoreData.ESoldierClass eClassLock;
-
-    structdefaultproperties
-    {
-        iItem=0
-        iQuantity=0
-        bTechLocked=false
-        bClassLocked=false
-        eClassLock=ESoldierClass.eSC_None
-    }
+    var ESoldierClass eClassLock;
 };
 
 var string m_strError;
@@ -32,7 +24,6 @@ var bool m_bNarrArcWarning;
 
 function Init(bool bLoadingFromSave){}
 function InitNewGame(){}
-
 function bool ApplySoldierLoadout(XGStrategySoldier kSoldier, TInventory kInventory) {}
 function bool ApplyTankLoadout(XGStrategySoldier kTank, TInventory kInventory){}
 function UnequipArmor(XGStrategySoldier kSoldier){}

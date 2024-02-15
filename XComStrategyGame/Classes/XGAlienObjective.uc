@@ -2,6 +2,7 @@ class XGAlienObjective extends XGStrategyActor
     config(GameData)
     notplaceable
     hidecategories(Navigation);
+//complete stub
 
 struct CheckpointRecord
 {
@@ -22,27 +23,6 @@ struct CheckpointRecord
     var XGShip_UFO m_kLastUFO;
     var bool m_bFoundSat;
     var bool m_bAbductionLaunched;
-
-    structdefaultproperties
-    {
-        m_arrSimultaneousObjs=none
-        m_kTObjective=(eType=EAlienObjective.eObjective_Recon,strName="",strEOMDescription="",bAbandon=false,arrStartDates=none,arrUFOs=none,arrMissions=none,arrRadii=none,arrRandDays=none)
-        m_iCountryTarget=0
-        m_iCityTarget=0
-        m_v2Target=(X=0.0,Y=0.0)
-        m_bAbandoned=false
-        m_iTimer=0
-        m_iNextMissionTimer=0
-        m_bComplete=false
-        m_bLastMissionSuccessful=false
-        m_bMissionThwarted=false
-        m_iSightings=0
-        m_iDetected=0
-        m_iShotDown=0
-        m_kLastUFO=none
-        m_bFoundSat=false
-        m_bAbductionLaunched=false
-    }
 };
 
 var array<XGAlienObjective> m_arrSimultaneousObjs;
@@ -63,6 +43,22 @@ var int m_iDetected;
 var int m_iShotDown;
 var XGShip_UFO m_kLastUFO;
 
-DefaultProperties
-{
-}
+
+function Init(TObjective kObj, int iStartDate, Vector2D v2Target, int iCountry, optional int iCity, optional EShipType eShip){}
+function EContinent GetContinent(){}
+function NotifyOfCrash(XGShip_UFO kUFO){}
+function NotifyOfAssaulted(XGShip_UFO kUFO){}
+function NotifyOfSuccess(XGShip_UFO kUFO){}
+function CheckIsComplete(XGShip_UFO kUFO){}
+function Update(optional int iNumUnits){}
+function LaunchNextMission(){}
+function Vector2D DetermineMissionTarget(int iRadius){}
+function SetNextMissionTimer(){}
+function PopFrontMission(){}
+function ClearMissions(){}
+function int ConvertDaysToTimeslices(int iStartDate, int iRandomDays){}
+function OverseerUpdate(){}
+function XGShip_UFO LaunchUFO(EShipType eShip, array<int> arrFlightPlan, Vector2D v2Target, float fDuration){}
+function array<int> GetFlightPlan(EUFOMission eMission, out float fDuration){}
+function bool FoundSatellite(){}
+function EAlienObjective GetType(){}

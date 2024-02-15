@@ -20,21 +20,11 @@ enum EBaseView
 struct TBarracksMainMenu
 {
     var TMenu mnuOptions;
-
-    structdefaultproperties
-    {
-        mnuOptions=(strLabel="",arrOptions=none,bTakesNoInput=false)
-    }
 };
 
 struct TSoldierTable
 {
     var TTableMenu mnuSoldiers;
-
-    structdefaultproperties
-    {
-        mnuSoldiers=(arrCategories=none,kHeader=(arrStrings=none,arrStates=none),arrOptions=none,bTakesNoInput=false)
-    }
 };
 
 struct THiringWidget
@@ -46,17 +36,6 @@ struct THiringWidget
     var TButtonText txtButtonHelp;
     var TImage imgStaff;
     var TLabeledText txtMoney;
-
-    structdefaultproperties
-    {
-        txtTitle=(StrValue="",iState=0)
-        txtFacilityCap=(StrValue="",strLabel="",iState=0,bNumber=false)
-        txtCost=(StrValue="",strLabel="",iState=0,bNumber=false)
-        txtNumToHire=(StrValue="",iState=0)
-        txtButtonHelp=(StrValue="",iState=0,iButton=0)
-        imgStaff=(iImage=0,strLabel="",iState=0,strPath="")
-        txtMoney=(StrValue="",strLabel="",iState=0,bNumber=false)
-    }
 };
 
 var TBarracksMainMenu m_kMainMenu;
@@ -92,8 +71,3 @@ function bool OnAcceptHiringOrder(){}
 function UpdateHiring(){}
 simulated function OnLoseFocus(){}
 simulated function OnReceiveFocus(){}
-
-
-DefaultProperties
-{
-}

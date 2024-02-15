@@ -3,6 +3,13 @@ class SeqAct_ActivateNarrative extends SequenceAction
     native(Level)
     forcescriptorder(true);
 
+var() XComNarrativeMoment NarrMoment;
+var Actor TargetActor;
+var XGUnit UnitInstigator;
+
+event Activated(){}
+function OnNarrativeComplete(){}
+
 defaultproperties
 {
     bCallHandler=false

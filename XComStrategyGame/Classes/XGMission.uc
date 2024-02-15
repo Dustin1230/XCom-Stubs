@@ -3,6 +3,7 @@ class XGMission extends XGStrategyActor
     config(GameData)
     abstract
     notplaceable;
+//complete stub
 
 struct CheckpointRecord
 {
@@ -18,7 +19,7 @@ struct CheckpointRecord
     var array<int> m_arrArtifacts;
     var XGBattleDesc m_kDesc;
     var int m_iDetectedBy;
-    var XGGameData.EMissionTime m_eTimeOfDay;
+    var EMissionTime m_eTimeOfDay;
     var XGAlienObjective m_kAlienObjective;
     var TMissionReward m_kReward;
     var XGStrategyActorNativeBase.EMissionDifficulty m_eDifficulty;
@@ -38,7 +39,8 @@ var int m_iDuration;
 var array<int> m_arrArtifacts;
 var XGBattleDesc m_kDesc;
 var int m_iDetectedBy;
-var XGStrategyActorNativeBase.EMissionDifficulty m_eDifficulty;
+var ETimeOfDay m_eTimeOfDay;
+var EMissionDifficulty m_eDifficulty;
 var XGAlienObjective m_kAlienObjective;
 var TMissionReward m_kReward;
 var string m_strHelp;
@@ -53,3 +55,21 @@ var const localized string m_strSituation;
 var const localized string m_strObjective;
 var string m_strOpenExclamationMark;
 var string m_strTip;
+
+function OnLoadGame(){};
+function bool IsDetected(){}
+simulated function string GetTitle(){}
+simulated function string GetHelp(){}
+function Vector2D GetCoords(){}
+function XGCity GetCity(){}
+function int GetCountry(){}
+function XGContinent GetContinent(){}
+function EMissionRegion GetRegion(){}
+function string GetLocationString(){}
+function XGShip_Dropship GetAssignedSkyranger(){}
+function GenerateBattleDescription(){}
+function TBriefingInfo GetBriefingInfo(){}
+function string CalcTime(){}
+protected function string GenerateOpName(optional bool bTutorial){}
+function int GetEnemyCount(){}
+function string GetSpeciesList(){}
